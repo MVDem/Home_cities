@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Layout from './layouts/Layout';
+import CityPage from './pages/CityPage';
+import { useEffect, useState } from 'react';
+import { getData } from './components/https/requests';
+import { setCities } from './components/store/citySlice';
+import { ICity } from './components/types/type';
+import { useDispatch } from 'react-redux';
 
-function App() {
+const App: React.FC = () => {
+  const [data, setData] = useState<ICity[]>();
+  const dispach = useDispatch();
+
+  useEffect(() => {
+    if (!data) {
+      getData(setData);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      dispach(setCities(data));
+    }
+  }, [data]);
+
+  // console.log('App');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/:name" element={<CityPage />} />
+        </Route>
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;

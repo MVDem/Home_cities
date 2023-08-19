@@ -1,0 +1,48 @@
+.homePage {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: minmax(auto, 88vh);
+  grid-template-areas: 'menu content content content  content';
+}
+
+.content {
+  grid-area: content;
+  width: 100%;
+  height: 100%;
+  background: $background-body;
+  box-sizing: border-box;
+  overflow: scroll;
+  display: flex;
+  position: relative;
+
+  &__wrapper {
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: minmax(auto, 370px);
+  }
+
+  &__error {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    @include font(22px, 24px, 300);
+    transform: translate(-50%, -50%);
+    color: $form-text;
+  }
+}
+
+.menu {
+  grid-area: menu;
+  box-sizing: border-box;
+  padding: 30px 0;
+  height: 100%;
+  background-color: $menu-background;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,38 @@
+.searchForm {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  &__lable {
+    @include font(16px, 19px, 300);
+    color: $form-text;
+  }
+
+  &__inputForm {
+    margin: 10px 0;
+    height: 32px;
+    box-sizing: border-box;
+  }
+}
+
+.select {
+  width: 100%;
+  margin-top: 30px;
+  @include font(16px, 19px, 300);
+  color: $form-text;
+
+  &__form {
+    width: 100%;
+    height: 32px;
+    margin-top: 10px;
+  }
+
+  &__input {
+    width: 100%;
+    margin: 10px 0;
+    height: 32px;
+    box-sizing: border-box;
+  }
+}
