@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../components/types/type';
 import {
   sortByContinent,
   sortByDistance,
   searchByName,
-  searchByCountryName,
+  sortByName,
+  removeSort,
 } from '../components/store/citySlice';
 
 export default function SearchForm() {
@@ -13,13 +14,8 @@ export default function SearchForm() {
   const searchParams = useSelector(
     (state: IState) => state.cities.searchParams
   );
-
+  const [input, setInput] = useState<string | null>(null);
   const [searchString, setSearchString] = useState(searchParams.searchString);
-  const [continent, setContinent] = useState(searchParams.continent);
-  const [sortParam, setSortParam] = useState('');
-  const [visible, setVisible] = useState<boolean>(true);
-  const [location, setLocation] = useState(searchParams.userLocation?.name);
-
   const dispach = useDispatch();
 
   const handleSearchByName = (e: string) => {
@@ -28,65 +24,49 @@ export default function SearchForm() {
   };
 
   const handleSortByContinent = (e: string) => {
-    setContinent(e);
+    setInput(null);
     dispach(sortByContinent(e));
   };
 
   const handleSortByDistance = (e: string) => {
-    setLocation(e);
     dispach(sortByDistance(e));
   };
 
-  useEffect(() => {
-    if (sortParam === 'Distance') {
-      setVisible(false);
-    } else if (sortParam === 'Name') {
-      setVisible(true);
-      dispach(searchByCountryName());
-    }
-  }, [sortParam]);
+  const handleSortByName = () => {
+    setInput(null);
+    dispach(removeSort());
+    dispach(sortByName());
+  };
+
+  const handleRemoveSort = () => {
+    setInput(null);
+    dispach(removeSort());
+    setSearchString('');
+  };
 
   return (
     <div className="searchForm">
-      <p className="searchForm__lable">Search</p>
-      <input
-        className="searchForm__inputForm"
-        type="text"
-        value={searchString ? searchString : ''}
-        onChange={(e) => handleSearchByName(e.target.value)}
-        placeholder="Type location"
-      />
-      <label className="select">
-        Search by continent
+      <div className="searchForm__start"></div>
+      {input === 'search' && (
+        <input
+          className="searchForm__inputForm"
+          type="text"
+          value={searchString ? searchString : ''}
+          onChange={(e) => handleSearchByName(e.target.value)}
+          placeholder="Type location"
+        />
+      )}
+      {input === 'dist' && (
         <select
-          className="select__form"
-          onChange={(e) => handleSortByContinent(e.target.value)}
-        >
-          <option value={continent}>Please choose an continent</option>
-          <option value="Europe">Europe</option>
-          <option value="Asia">Asia</option>
-          <option value="North America">North America</option>
-          <option value="South America">South America</option>
-          <option value="Australia">Australia</option>
-          <option value="Africa">Africa</option>
-        </select>
-      </label>
-      <label className="select">
-        Sort
-        <select
-          className="select__form"
-          onChange={(e) => setSortParam(e.target.value)}
-        >
-          <option value={sortParam}>Please choose a method</option>
-          <option value="Name">Name</option>
-          <option value="Distance">Distance</option>
-        </select>
-        <select
-          hidden={visible}
-          className="select__form"
+          className="searchForm__sortByDist"
           onChange={(e) => handleSortByDistance(e.target.value)}
+          value={
+            searchParams.userLocation?.name
+              ? searchParams.userLocation?.name
+              : 'Sort'
+          }
         >
-          <option value={location}>Please choose your location</option>
+          <option value="Sort">Please choose your location</option>
           {cities.map((e, i) => {
             return (
               <option key={i} value={e.name}>
@@ -95,7 +75,62 @@ export default function SearchForm() {
             );
           })}
         </select>
-      </label>
+      )}
+      <button
+        type="button"
+        className="searchForm__searchBtn"
+        onClick={() => setInput('search')}
+      >
+        <img
+          className="searchForm__search"
+          src="./search.png"
+          alt="search-button"
+        />
+      </button>
+      <button type="button" className="searchForm__searchBtn">
+        <img
+          className="searchForm__search"
+          src="./dist.png"
+          alt="search-button"
+          onClick={() => setInput('dist')}
+        />
+      </button>
+      <button
+        type="button"
+        className="searchForm__searchBtn"
+        onClick={handleSortByName}
+      >
+        <img
+          className="searchForm__search"
+          src="./sort.png"
+          alt="sort-button"
+        />
+      </button>
+      <select
+        className="searchForm__sortByContinent"
+        onChange={(e) => handleSortByContinent(e.target.value)}
+        value={searchParams.continent}
+      >
+        <option value="Sort">Sort by Continent</option>
+        <option value="Europe">Europe</option>
+        <option value="Asia">Asia</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+        <option value="Australia">Australia</option>
+        <option value="Africa">Africa</option>
+      </select>
+      <button
+        type="button"
+        className="searchForm__searchBtn"
+        onClick={handleRemoveSort}
+      >
+        <img
+          className="searchForm__search"
+          src="./closeWhite.png"
+          alt="close-button"
+        />
+      </button>
+      <div className="searchForm__end"></div>
     </div>
   );
 }

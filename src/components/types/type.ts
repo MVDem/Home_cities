@@ -28,7 +28,7 @@ export interface ISearchParams {
   searchString?: string;
   continent?: string;
   sortByName?: boolean;
-  userLocation?: ICity;
+  userLocation?: ICity | null;
   units?: string;
 }
 

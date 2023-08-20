@@ -1,15 +1,14 @@
 .homePage {
-  display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: minmax(auto, 88vh);
-  grid-template-areas: 'menu content content content  content';
+  display: flex;
+  position: relative;
+  height: 100%;
 }
 
 .content {
   grid-area: content;
   width: 100%;
   height: 100%;
+  padding-top: 40px;
   background: $background-body;
   box-sizing: border-box;
   overflow: scroll;
@@ -37,12 +36,11 @@
 }
 
 .menu {
-  grid-area: menu;
-  box-sizing: border-box;
-  padding: 30px 0;
-  height: 100%;
-  background-color: $menu-background;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: row;
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  top: 75px;
+  transform: translate(-50%, -50%);
 }
+
+

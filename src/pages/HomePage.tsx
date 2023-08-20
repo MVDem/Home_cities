@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { IState } from '../components/types/type';
 import Card from '../layouts/Card';
 import SearchForm from '../layouts/searchForm';
-import { NavLink } from 'react-router-dom';
 
 export default function HomePage() {
   const citiesView = useSelector((state: IState) => state.cities.viewList);

@@ -24,7 +24,7 @@ const citiesSlice = createSlice({
 
     searchByName: (state: IinitialState, action) => {
       state.searchParams.searchString = action.payload;
-      state.viewList = state.data.filter((e) => {
+      state.viewList = state.viewList.filter((e) => {
         if (e.name.toLowerCase().search(action.payload.toLowerCase()) !== -1) {
           return e;
         } else if (
@@ -40,12 +40,12 @@ const citiesSlice = createSlice({
       });
     },
 
-    searchByCountryName: (state: IinitialState) => {
+    sortByName: (state: IinitialState) => {
       state.viewList = state.data.sort((a, b) => (a.name > b.name ? 1 : -1));
     },
 
     sortByContinent: (state: IinitialState, action) => {
-      console.log('12');
+      state.searchParams.continent = action.payload;
       state.viewList = state.data.filter((e) => {
         if (
           e.continent.toLowerCase().search(action.payload.toLowerCase()) !== -1
@@ -67,8 +67,11 @@ const citiesSlice = createSlice({
       const location = state.data.find((e) => {
         return e.name === action.payload;
       });
+
+      state.searchParams.userLocation = location;
+
       if (location) {
-        state.viewList = state.data.sort((a, b) =>
+        state.viewList = state.viewList.sort((a, b) =>
           distantion(location!.coords, a!.coords) >
           distantion(location!.coords, b!.coords)
             ? 1
@@ -77,10 +80,14 @@ const citiesSlice = createSlice({
       }
     },
 
-    // removeSort(state: IinitialState) {
-    //   state.viewList = [];
-    //   state.searchParams = {};
-    // },
+    removeSort(state: IinitialState) {
+      state.viewList = state.data;
+      state.searchParams = {
+        units: 'Fahrenheit',
+        continent: 'Sort',
+        userLocation: null,
+      };
+    },
 
     setUserUnits: (state: IinitialState, action) => {
       state.searchParams.units = action.payload;
@@ -91,10 +98,10 @@ const citiesSlice = createSlice({
 export const {
   setCities,
   searchByName,
-  searchByCountryName,
+  sortByName,
   sortByContinent,
   sortByDistance,
-  // removeSort,
+  removeSort,
   setUserUnits,
 } = citiesSlice.actions;
 

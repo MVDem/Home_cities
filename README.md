@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+### Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the documentation for the frontend project. This guide aims to provide a comprehensive overview of the project's functionality, usage, and technologies employed. The project features a responsive web application that allows users to explore and interact with city data.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+To run the application, you need to start the server on the port http://localhost:5000
+
+I used json-server:
+
+Install the global dependency
+
+### `npm install -g json-server`
+
+Run the JSON server to serve data:
+
+### `json-server --watch data/data.json --port 5000`
+
+Install the project dependencies
+
+### `npm install`
+
+Running the Application
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Main view
 
-### `npm test`
+The main view of the application provides the following features:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Display of a grid list of **active** cities.
+- Utilization of an adaptive and responsive viewer for improved user experience.
+- Implementation of a search functionality to filter cities by name or country using a single search field.
+- Incorporation of a filter functionality for users to sort cities by continent.
+- Implementation of sorting options to arrange cities by name or distance to a specified location.
+- Display of a "No results found" message when search terms yield zero results.
+- Users can configure temperature units as either international or imperial.
 
-### `npm run build`
+Each city square in the main view displays the following information: City name, Country name, Description, and Background image.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### City details page (Weather)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The city details page offers the following functionality:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Display of detailed information about a selected city, including weather status (temperature, weather conditions, etc.).
+- Display of a 5-day forecast for the chosen city.
+- Display of temperature data in the user's selected units (with saved preference).
+- A back button is provided to return to the main page, preserving applied filters.
 
-### `npm run eject`
+#### Technologies used
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- React: JavaScript library for building user interfaces.
+- React Router DOM: Routing library for handling navigation in React applications.
+- Redux: State management library for managing application state.
+- Axios: HTTP client for making network requests.
+- TypeScript: Language that adds static types to JavaScript.
+- HTML & CSS (SASS): Markup and styling languages for structuring and designing the application.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Feel free to explore the features and functionalities of the application using this documentation. Should you have any questions or encounter issues, please refer to the provided instructions and technologies for assistance or contact the developer.

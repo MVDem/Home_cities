@@ -25,6 +25,7 @@
   grid-area: main;
   padding: 0 10px;
   box-sizing: border-box;
+  overflow: scroll;
 }
 
 .footer {
@@ -33,60 +34,7 @@
 }
 
 // @include tablet {
-//   .header__btn-burger {
-//     display: block;
-//   }
-
-//   .menu-extra {
-//     height: calc(100% - 130px);
-//     padding-top: 30px;
-//     background-color: $menu-background;
-//     position: absolute;
-//     top: 100px;
-//   }
-
-//   .menu {
-//     &__btn-extra {
-//       color: $menu-text;
-//     }
-//   }
-// }
-
-// @include mobile {
 //   .header {
-//     height: 10vh;
-//   }
-
-//   .main {
-//     height: 80vh;
-//     flex-direction: column;
-//   }
-
-//   .menu {
-//     max-width: 200px;
-//   }
-//   .menu-main {
-//     max-width: 170px;
-//   }
-//   .menu-extra {
-//     max-width: 170px;
-//   }
-
-//   .menu-main__btn {
-//     font-size: 12px;
-//   }
-
-//   .menu-top__btn-home {
-//     margin-bottom: 10px;
-//   }
-
-//   .menu-top__home {
-//     height: 20px;
-//     width: 20px;
-//     left: 5px;
-//   }
-
-//   .menu-extra__btn {
-//     font-size: 12px;
+//     display: block;
 //   }
 // }

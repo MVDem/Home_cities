@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { IForecast, IState, IWeather } from '../components/types/type';
 import { getWeather, getWeatherForecast } from '../components/https/requests';
-import { useEffect, useState } from 'react';
 import { setUserUnits } from '../components/store/citySlice';
-import { useDispatch } from 'react-redux';
 
 export default function CityPage() {
   const [weather, setWeather] = useState<IWeather>();
@@ -26,6 +25,8 @@ export default function CityPage() {
       return Math.round((temp - 273.15) * 1.8 + 32);
     } else if (param === 'Celsius' && temp) {
       return Math.round(temp - 273.15);
+    } else {
+      return null;
     }
   };
 
@@ -58,11 +59,7 @@ export default function CityPage() {
     <div className="cityWrapper">
       <div className="cityPage">
         <NavLink to={'/'}>
-          <img
-            className="cityPage__close"
-            src="./211652_close_icon.png"
-            alt="CityImage"
-          />
+          <img className="cityPage__close" src="./close.png" alt="CityImage" />
         </NavLink>
         <section className="cityPage__about">
           <h3 className="cityPage__title">
@@ -116,7 +113,7 @@ export default function CityPage() {
                       </div>
                     );
                   }
-                  return <></>;
+                  return <div key={i}></div>;
                 })}
             </div>
           </div>

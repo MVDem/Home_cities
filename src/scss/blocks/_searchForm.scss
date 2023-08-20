@@ -3,36 +3,98 @@
   padding: 0 10px;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 
-  &__lable {
-    @include font(16px, 19px, 300);
-    color: $form-text;
+  &__start {
+    height: 42px;
+    width: 21px;
+    border-radius: 21px 0% 0% 21px;
+    border: none;
+    box-sizing: border-box;
+    background: $background-header;
   }
 
   &__inputForm {
-    margin: 10px 0;
-    height: 32px;
+    height: 42px;
+    width: 300px;
+    border: none;
+    padding-left: 15px;
     box-sizing: border-box;
+    background: $background-header;
+    @include font(14px, 16px, 300);
+    color: $form-text;
+  }
+
+  &__inputForm::placeholder {
+    @include font(14px, 16px, 300);
+    color: $form-text;
+  }
+  &__searchBtn {
+    padding: 0;
+    width: 42px;
+    height: 42px;
+    border: none;
+    box-sizing: border-box;
+    background: $background-header;
+  }
+  &__search {
+    width: 26px;
+    height: 26px;
+  }
+
+  &__sortByDist {
+    height: 42px;
+    width: 300px;
+    border: none;
+    box-sizing: border-box;
+    background: $background-header;
+    @include font(14px, 16px, 300);
+    color: $form-text;
+  }
+
+  &__sortByContinent {
+    height: 42px;
+    width: 142px;
+    border: none;
+    box-sizing: border-box;
+    background: $background-header;
+    @include font(14px, 16px, 300);
+    color: $form-text;
+  }
+  &__end {
+    height: 42px;
+    width: 21px;
+    border: none;
+    box-sizing: border-box;
+    background: $background-header;
+    // margin-right: 15px;
+    border-radius: 0 21px 21px 0;
+  }
+
+  &__inputForm:focus,
+  &__sortByContinent:focus,
+  &__sortByDist:focus {
+    border: none;
+    outline: none;
   }
 }
 
-.select {
-  width: 100%;
-  margin-top: 30px;
-  @include font(16px, 19px, 300);
-  color: $form-text;
+.searchForm:focus {
+  border: none;
+}
 
-  &__form {
-    width: 100%;
-    height: 32px;
-    margin-top: 10px;
-  }
+@include mobile {
+  .searchForm {
+    display: flex;
+    position: relative;
 
-  &__input {
-    width: 100%;
-    margin: 10px 0;
-    height: 32px;
-    box-sizing: border-box;
+    &__inputForm,
+    &__sortByDist {
+      padding-left: 15px;
+      position: absolute;
+      top: 50px;
+      width: 352px;
+      border-radius: 21px;
+    }
   }
 }

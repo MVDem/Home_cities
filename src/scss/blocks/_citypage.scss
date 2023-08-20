@@ -64,11 +64,16 @@
     height: 32px;
     border: none;
     @include font(16px, 19px, 300);
-    // color: $form-text;
+  }
+
+  &__select:focus {
+    border: none;
+    outline: none;
   }
 }
 
 .forecast {
+  justify-self: flex-end;
   height: 100%;
   padding-bottom: 15px;
   display: flex;
@@ -84,12 +89,42 @@
 
   &__list {
     width: 100%;
-    // height: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
   }
   &__oneDay {
+    margin: 5px 0;
     @include font(16px, 19px, 400);
     color: $card-text;
+    > p {
+      margin: 5px 0;
+    }
+  }
+}
+
+@include mobile {
+  .cityWrapper {
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .cityPage {
+    grid-template-columns: repeat(1, minmax(200px, auto));
+    grid-auto-rows: minmax(200px, auto);
+    grid-template-areas:
+      'image'
+      'about '
+      'forecast ';
+
+    &__about {
+      padding: 5px;
+    }
+  }
+
+  .forecast__list {
+    flex-direction: column;
+    // align-items: center;
+    padding-left: 15px;
   }
 }
