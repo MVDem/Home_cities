@@ -6,21 +6,13 @@ Welcome to the documentation for the frontend project. This guide aims to provid
 
 In the project directory, you can run:
 
-To run the application, you need to start the server on the port http://localhost:5000
-
-I used json-server:
-
-Install the global dependency
-
-### `npm install -g json-server`
-
-Run the JSON server to serve data:
-
-### `json-server --watch data/data.json --port 5000`
-
 Install the project dependencies
 
 ### `npm install`
+
+Run the JSON server to serve data:
+
+### `npm run  start-server`
 
 Running the Application
 
